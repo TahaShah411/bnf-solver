@@ -1,0 +1,18 @@
+# A cut-down JSON value: objects, arrays, strings of letters, integers,
+# and the three literals. Nullable and recursive.
+#
+#   python -m bnf_solver -g examples/json-value.bnf -s value -i '{"a":[1,true]}'
+
+<value>   ::= <object> | <array> | <string> | <number> | "true" | "false" | "null"
+<object>  ::= "{" "}" | "{" <members> "}"
+<members> ::= <pair> | <pair> "," <members>
+<pair>    ::= <string> ":" <value>
+<array>   ::= "[" "]" | "[" <elements> "]"
+<elements>::= <value> | <value> "," <elements>
+<string>  ::= "\"" <letters> "\"" | "\"" "\""
+<letters> ::= <letter> | <letter> <letters>
+<letter>  ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+            | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+            | "u" | "v" | "w" | "x" | "y" | "z"
+<number>  ::= <digit> | <digit> <number>
+<digit>   ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
