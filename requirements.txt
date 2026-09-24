@@ -1,0 +1,2 @@
+# bnf_solver has no runtime dependencies - it is pure standard-library Python.
+# Development/test dependencies live in requirements-dev.txt.
