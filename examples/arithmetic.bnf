@@ -1,0 +1,10 @@
+# Arithmetic expressions with the usual precedence and parentheses.
+# Left recursive on purpose: Earley handles it, a naive LL parser would not.
+#
+#   python -m bnf_solver -g examples/arithmetic.bnf -s expr -i "1+2*3"
+
+<expr>   ::= <expr> "+" <term> | <expr> "-" <term> | <term>
+<term>   ::= <term> "*" <factor> | <term> "/" <factor> | <factor>
+<factor> ::= "(" <expr> ")" | <number>
+<number> ::= <digit> | <digit> <number>
+<digit>  ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"

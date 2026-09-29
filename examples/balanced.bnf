@@ -1,0 +1,10 @@
+# Balanced brackets, written in a deliberately nasty way: the grammar is
+# ambiguous (concatenation can be split anywhere) and nullable (<brackets>
+# derives the empty string). Earley copes with both.
+#
+#   python -m bnf_solver -g examples/balanced.bnf -s brackets -i "([]())"
+
+<brackets> ::= <brackets> <brackets>
+             | "(" <brackets> ")"
+             | "[" <brackets> "]"
+             | ""

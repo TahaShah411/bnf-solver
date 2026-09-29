@@ -1,0 +1,12 @@
+# A toy English fragment. Terminals include the spaces between words, because
+# the solver matches raw characters rather than pre-tokenised words.
+#
+#   python -m bnf_solver -g examples/sentence.bnf -s sentence -i "the cat sees a lazy dog"
+
+<sentence>    ::= <noun-phrase> " " <verb-phrase>
+<noun-phrase> ::= <article> " " <noun> | <article> " " <adjective> " " <noun>
+<verb-phrase> ::= <verb> | <verb> " " <noun-phrase>
+<article>     ::= "the" | "a"
+<adjective>   ::= "small" | "lazy" | "grey"
+<noun>        ::= "cat" | "dog" | "telescope"
+<verb>        ::= "sees" | "chases" | "sleeps"
